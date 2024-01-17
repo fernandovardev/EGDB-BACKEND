@@ -1,0 +1,6 @@
+__pycache__
+venv
+env
+.env
+
+docker run --name django-api -d -p 8000:8000 django-api:latest
