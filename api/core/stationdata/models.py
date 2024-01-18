@@ -138,3 +138,13 @@ class InventarioCombustibles(BaseModel):
     DIFERENCIA =  models.DecimalField(max_digits=15, decimal_places=2)
     DIFERENCIA_ACUMULADA =  models.DecimalField(max_digits=15, decimal_places=2)
 
+class movmedagualuz(BaseModel):
+    id = models.AutoField(max_length=30, primary_key=True, default=1)
+    ESTACION = models.ForeignKey(Estacion, on_delete=models.CASCADE)
+    FECHA = models.DateField()
+    MEDAguaAnt =  models.DecimalField(max_digits=15, decimal_places=2)
+    MEDAguaAct =  models.DecimalField(max_digits=15, decimal_places=2)
+    ConsumoAgua =  models.DecimalField(max_digits=15, decimal_places=2)
+    MEDLuzAnt =  models.DecimalField(max_digits=15, decimal_places=2)
+    MEDLuzAct =  models.DecimalField(max_digits=15, decimal_places=2)
+    ConsumoLuz =  models.DecimalField(max_digits=15, decimal_places=2)

@@ -37,6 +37,7 @@ router.register(r'movmedtanq', MOVMEDTANQViewSet,basename='cargas-gen')
 router.register(r'stationdata/data', UpdateDataViewSet,basename='data-gen')
 router.register(r'stationdata/stationinfo', StationViewSet,basename='data-gen')
 router.register(r'products', ProductoViewSet,basename='data-gen')
+router.register(r'agualuz', movmedagualuzViewSet,basename='data-gen')
 
 urlpatterns = [
     *router.urls,

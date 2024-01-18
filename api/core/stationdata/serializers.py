@@ -124,4 +124,12 @@ class MOVMEDTANQerializer(serializers.ModelSerializer):
         model = MOVMEDTANQ
         fields = '__all__'  
 
+class movmedagualuzSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = movmedagualuz
+        fields = [
+            'id', 'ESTACION', 'FECHA', 
+            'MEDAguaAnt', 'MEDAguaAct', 'ConsumoAgua',
+            'MEDLuzAnt', 'MEDLuzAct', 'ConsumoLuz'
+        ]
 

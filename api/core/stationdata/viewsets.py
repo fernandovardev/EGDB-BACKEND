@@ -235,3 +235,35 @@ class MOVMEDTANQViewSet(viewsets.ModelViewSet):
 
         MOVMEDTANQ.objects.filter(ESTACION_id=estacion_id).delete()
         return Response({"message": f"All records for ESTACION_id {estacion_id} have been deleted successfully"}, status=200)
+
+class movmedagualuzViewSet(viewsets.ModelViewSet):
+    queryset = movmedagualuz.objects.all()
+    serializer_class = movmedagualuzSerializer
+
+    # Method to fetch records by date and station
+    @action(detail=False, methods=['get'])
+    def get_medluzact_medaguaact_by_fecha(self, request):
+        fecha = request.query_params.get('FECHA')
+        estacion_id = request.query_params.get('ESTACION')
+        if fecha and estacion_id:
+            queryset = movmedagualuz.objects.filter(FECHA=fecha, ESTACION=estacion_id).values('MEDLuzAct', 'MEDAguaAct')
+            if queryset.exists():
+                return Response(queryset)
+            else:
+                return Response([{'MEDLuzAct': 0, 'MEDAguaAct': 0}])
+        else:
+            return Response({"error": "Both FECHA and ESTACION parameters are required"}, status=status.HTTP_400_BAD_REQUEST)
+    # Method to update records
+    @action(detail=True, methods=['put'])
+    def update_records(self, request, pk=None):
+        # Update logic here
+        # Use the 'pk' if you want to update a specific record
+        # You can use the movmedagualuzSerializer for serialization/deserialization
+        return Response({"message": "Update functionality not implemented yet"}, status=status.HTTP_501_NOT_IMPLEMENTED)
+
+    # Method to delete records by station
+    @action(detail=True, methods=['delete'])
+    def delete_by_station(self, request, pk=None):
+        # Delete logic here
+        # Use the 'pk' as the station ID for deletion
+        return Response({"message": "Delete functionality not implemented yet"}, status=status.HTTP_501_NOT_IMPLEMENTED)
